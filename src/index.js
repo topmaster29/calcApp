@@ -2,12 +2,16 @@
  * @file index.js
  * @module index
  * @description A small command line calculator application
+ * @requires module:prompt
  * @requires {@link https://www.npmjs.com/package/path|path}
  * @author Zarko
  * @date 2024/01/24
  * @copyright Copyright © by Zarko. All rights reserved
  */
 
+// Internam imports
+let prompt = require('./prompt');
+// External imports
 let path = require("path");
 global.appRoot = path.resolve(process.cwd());
 let rootPath = "";
@@ -37,17 +41,20 @@ function application() {
 		while (programRunning) {
 			commandInput = prompt.prompt("Enter a math operation: ");
 
-			if (
-				commandInput.toUpperCase().trim() === "EXIT" ||
-				commandInput.toUpperCase().trim() === "QUIT" ||
-				commandInput.toUpperCase().trim() === "Q" ||
-				commandInput.toUpperCase().trim() === "X"
-			) {
-				console.log("END command Parser");
-				programRunning = false;
-				console.log("END main program loop");
-				console.log("Exiting, Good bye, have a nice day & stay safe!");
+			if (commandInput !== undefined) {
+				if (
+					commandInput.toUpperCase().trim() === "EXIT" ||
+					commandInput.toUpperCase().trim() === "QUIT" ||
+					commandInput.toUpperCase().trim() === "Q" ||
+					commandInput.toUpperCase().trim() === "X"
+				) {
+					console.log("END command Parser");
+					programRunning = false;
+					console.log("END main program loop");
+					console.log("Exiting, Good bye, have a nice day & stay safe!");
+				}
 			}
+			
 		}
 	}
 	console.log(`END ${namespacePrefix}${functionName} function`);

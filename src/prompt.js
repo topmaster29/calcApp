@@ -25,5 +25,27 @@ let term = 13; // carriage return
 function prompt(ask) {
     let functionname = prompt.name;
     console.log(`BEGIN ${namespacePrefix}${functionname} function`);
+    console.log(`ask is: ${JSON.stringify(ask)}`);
+    let input = '';
+    if (ask) {
+        process.stdout.write(ask);
+    }
+    let 
+        buffer = Buffer.alloc(1024),
+        fd = process.platform === 'win32' ? process.stdin.fd : fs.openSync('dev/tty', 'rs'),
+        readSize = fs.readSync(0, buffer, 0, 1024);
     
+    input = buffer.toString('utf8', 0, readSize);
+    if (input.includes(String.fromCharCode(term))) {
+        input = input.slice(0, input.indexOf(String.fromCharCode(term)));
+    } else if (input.includes('/r/n')) {
+        input = input.slice(0, input.indexOf('/r/n'));
+    }
+    console.log(`input is: ${JSON.stringify(input)}`);
+    console.log(`END ${namespacePrefix}${functionname} function`);
+    return input;
+}
+
+module.exports = {
+    ['prompt']: (ask) => prompt(ask)
 }
