@@ -56,11 +56,29 @@ function application() {
 					inputData2 = getUserInput('Enter the second number to add: ');
 					let addResult = myMath.add(inputData1, inputData2);
 					console.log(`sum is: ${addResult}`);
+				} else if (commandInput.toUpperCase().trim() === 'SUBTRACT') {
+					inputData1 = getUserInput('Enter the first number to subtract: ');
+					inputData2 = getUserInput('Enter the second number to subtract: ');
+					let subtractResult = myMath.subtract(inputData1, inputData2);
+					console.log(`difference is: ${subtractResult}`);
+				} else if (commandInput.toUpperCase().trim() === 'MULTIPLY') {
+					inputData1 = getUserInput('Enter the first number to multiply: ');
+					inputData2 = getUserInput('Enter the second number to multipy: ');
+					let result = myMath.multiply(inputData1, inputData2);
+					console.log(`multiply result is: ${result}`);
+				} else if (commandInput.toUpperCase().trim() === 'DIVIDE') {
+					inputData1 = getUserInput('Enter the first number to divide: ');
+					inputData2 = getUserInput('Enter the second number to divide: ');
+					let result = myMath.divide(inputData1, inputData2);
+					console.log(`division result is: ${result}`);
+				} else if (commandInput.toUpperCase().trim() === 'FACTORIAL') {
+					inputData1 = getUserInput('Enter the number to compute factorial: ');
+					let result = myMath.factorial(inputData1);
+					console.log(`factorial result is: ${result}`);
 				}
-			}
-			
-		}
-	}
+			} // End-if (commandInput !== undefined)
+		} // End-while (programRunning) 
+	} // End-if (argumentDriveInterface === false)
 	console.log(`END ${namespacePrefix}${functionName} function`);
 }
 
